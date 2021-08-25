@@ -508,7 +508,8 @@
 				<enabled>true</enabled>
 			</releases>
 		</repository>
-		<repository>
+		<!-- Enables usage of locally published artifacts -->
+<!--		<repository>
 			<id>maven-local</id>
 			<name>Local m2 Repository</name>
 			<url>file://~/.m2/repository</url>
@@ -518,7 +519,7 @@
 			<releases>
 				<enabled>true</enabled>
 			</releases>
-		</repository>
+		</repository>-->
 	</repositories>
 
 	<dependencyManagement>
