@@ -16,6 +16,7 @@
 
 import requests
 import json
+import pprint
 
 
 class IdsApi:
@@ -56,6 +57,23 @@ class IdsApi:
             url, params=params, json=self.toListIfNeeded(contract)
         )
         return json.loads(response.text)
+
+    def subscriptionRequest(self, recipient, artifactId):
+        url = self.recipient + "/api/ids/subscribe"
+        params = {}
+        params["recipient"] = recipient
+
+        data = {
+            "target": artifactId,
+            "location": self.recipient + "/api/ids/data",
+            "subscriber": self.recipient,
+            "pushData": True
+        }
+        response = self.session.post(
+            url, params=params, json=data
+        )
+        pprint.pprint(response.text)
+        response.raise_for_status()
 
     def toListIfNeeded(self, obj):
         if isinstance(obj, list):

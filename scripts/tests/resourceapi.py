@@ -88,6 +88,16 @@ class ResourceApi:
         response = self.session.post(self.recipient + "/api/rules", json=data)
         return response.headers["Location"]
 
+    def create_subscription(self, artifactId, clientUrl):
+        data = {
+            "target": artifactId,
+            "location": clientUrl,
+            "subscriber": clientUrl,
+            "pushData": True
+        }
+        response = self.session.post(self.recipient + "/api/subscriptions", json=data)
+        return response.headers["Location"]
+
     def add_resource_to_catalog(self, catalog, resource):
         return self.session.post(
             catalog + "/offers", json=self.toListIfNeeded(resource)
